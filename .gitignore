@@ -1,1 +1,4 @@
 Data/
+.idea/
+output.csv
+*.xlsm
