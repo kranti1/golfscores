@@ -4,6 +4,7 @@ import pandas as pd
 
 # to run this file in the console do this.
 # execfile('/Users/kartiks/Documents/github/GolfScores/ExtractData.py')
+# execfile('C:\docs\github\golfscores\ExtractData.py')
 '''
 path = './Data'
 filelist = listdir(path)
