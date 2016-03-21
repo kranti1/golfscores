@@ -2,3 +2,4 @@ Data/
 .idea/
 output.csv
 *.xlsm
+.ipynb_checkpoints/

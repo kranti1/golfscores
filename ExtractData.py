@@ -31,7 +31,26 @@ for sheet in xlSheets:
 
 #Final Combined File to a CSV
 #combined_df.to_csv('./output.csv', encoding='ascii')
+combined_df = combined_df.replace(u'\u2010\u2010\u2010', '')
+combined_df = combined_df.replace(u'\u2010', '-')
+
 combined_df.to_excel('./output.xls')
+
+# Debug Helpers REMOVE when done
+aa = combined_df['ATTACK ANG.'][:10]
+sd = combined_df['SWING DIR.'][:10]
+
+# replace "hyphen" with Unicode "minus"
+aa = aa.replace(u'\u2010', u'\u2212')
+sd = sd.replace(u'\u2010', u'\u2212')
+
+# to convert a series to numeric try
+#aa.convert_objects(convert_numeric=True)
+
+
+
+
+
 
 #enable printing the entire dataframe
 def print_full(x):
