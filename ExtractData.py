@@ -29,10 +29,12 @@ for sheet in xlSheets:
         frames = [combined_df, df]
         combined_df = pd.concat(frames)
 
-#Final Combined File to a CSV
-#combined_df.to_csv('./output.csv', encoding='ascii')
-combined_df = combined_df.replace(u'\u2010\u2010\u2010', '')
-combined_df = combined_df.replace(u'\u2010', '-')
+# Convert string to Numeric
+combined_df = combined_df.replace({u'\u2010': '-'}, regex=True)
+combined_df = combined_df.convert_objects(convert_numeric=True)
+
+# remap series types
+combined_df['DATE'] = combined_df['DATE'].astype('datetime64[ns]')
 
 combined_df.to_excel('./output.xls')
 
