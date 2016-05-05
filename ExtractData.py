@@ -43,59 +43,15 @@ combined_df['SIDE'] = combined_df['SIDE'].astype('string')
 combined_df['SIDE TOT.'] = combined_df['SIDE TOT.'].astype('string')
 combined_df['CLUB'] = combined_df['CLUB'].astype('string')
 
-combined_df['ATTACK ANG.'] = pd.to_numeric(combined_df['ATTACK ANG.'], errors='coerce')
-combined_df['BALL SPEED'] = pd.to_numeric(combined_df['BALL SPEED'], errors='coerce')
-combined_df['CARRY'] = pd.to_numeric(combined_df['CARRY'], errors='coerce')
-combined_df['CLUB PATH'] = pd.to_numeric(combined_df['CLUB PATH'], errors='coerce')
-combined_df['CLUB SPEED'] = pd.to_numeric(combined_df['CLUB SPEED'], errors='coerce')
-combined_df['DYN. LOFT'] = pd.to_numeric(combined_df['DYN. LOFT'], errors='coerce')
-combined_df['FACE ANG.'] = pd.to_numeric(combined_df['FACE ANG.'], errors='coerce')
-combined_df['FACE TO PATH'] = pd.to_numeric(combined_df['FACE TO PATH'], errors='coerce')
-
-
-#combined_df[''] = pd.to_numeric(combined_df[''], errors='coerce')
-
-type_int = ('HEIGHT' , 'LAND. ANG.' ,'LAUNCH ANG.')
-type_other = ('CLUB' , 'SIDE')
-type_all = type_int + type_other
-
-
-for h in type_int:
+#cast the rest of the columns to int 
+all_columns= set (combined_df.columns.values)
+col = {u'DATE',u'LOW POINT',u'SHEETNAME',u'SIDE',u'SIDE TOT.' ,u'CLUB'}
+col = all_columns - col
+for h in col:
     combined_df[h] = pd.to_numeric(combined_df[h], errors='coerce')
 
 
-'''
-
-SMASH FAC.
-SPIN AXIS
-SPIN LOFT
-SPIN RATE
-STROKE NO
-SWING DIR.
-SWING PL.
-TOTAL
-'''
-
-
-#combined_df = combined_df.convert_objects(convert_numeric=True)
-
-
 combined_df.to_excel('./output.xls')
-
-# Debug Helpers REMOVE when done
-aa = combined_df['ATTACK ANG.'][:10]
-sd = combined_df['SWING DIR.'][:10]
-
-# replace "hyphen" with Unicode "minus"
-aa = aa.replace(u'\u2010', u'\u2212')
-sd = sd.replace(u'\u2010', u'\u2212')
-
-# to convert a series to numeric try
-#aa.convert_objects(convert_numeric=True)
-
-
-
-
 
 
 #enable printing the entire dataframe
